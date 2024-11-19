@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -eu
+
+# adapted from https://github.com/johannes-wolf/cetz/blob/35c0868378cea5ad323cc0d9c2f76de8ed9ba5bd/scripts/package
+# licensed under Apache License 2.0
+
+. "$(dirname "${BASH_SOURCE[0]}")/setup"
+
+TARGET="$(resolve-target "${1:?Missing target path, @local or @preview}")"
+echo "Install dir: $TARGET"
+
+# Copy all included files to a temporary directory
+TMP="$(mktemp -d)"
+for f in src/*.typ CHANGELOG.md README.md LICENSE typst.toml; do
+  mkdir -p "$TMP/$(dirname "$f")" 2>/dev/null
+  cp -r "$ROOT/$f" "$TMP/$f"
+done
+
+# Remove and re-create the target directory
+TARGET="${TARGET:?}/${PKG_PREFIX:?}/${VERSION:?}"
+echo "Packaged to: $TARGET"
+if rm -r "${TARGET:?}" 2>/dev/null; then
+  echo "Overwriting existing version."
+fi
+mkdir -p "$TARGET"
+
+# Move from temporary to target dir
+# include hidden files by setting dotglob
+shopt -s dotglob
+mv "$TMP"/* "$TARGET"
