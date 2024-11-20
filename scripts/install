@@ -11,7 +11,7 @@ echo "Install dir: $TARGET"
 
 # Copy all included files to a temporary directory
 TMP="$(mktemp -d)"
-for f in src/*.typ CHANGELOG.md README.md LICENSE typst.toml; do
+for f in src/*.typ CHANGELOG.md README.md LICENSE typst.toml docs/*.svg; do
   mkdir -p "$TMP/$(dirname "$f")" 2>/dev/null
   cp -r "$ROOT/$f" "$TMP/$f"
 done
