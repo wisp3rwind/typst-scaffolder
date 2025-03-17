@@ -1,8 +1,8 @@
 [package]
-name = "guide-lines"
+name = "showframe"
 version = "0.1.0"
 compiler = "0.12.0"
-repository = "https://github.com/wisp3rwind/typst-guide-lines"
+repository = "https://github.com/wisp3rwind/typst-showframe"
 entrypoint = "src/lib.typ"
 authors = [
   "wisp3rwind <@wisp3rwind>"

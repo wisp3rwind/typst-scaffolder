@@ -1,4 +1,4 @@
-# The `guide-lines` Package
+# The `showframe` Package
 
 Show borders around the main text area, header and footer in Typst documents.
 
@@ -9,7 +9,7 @@ package.
 ## Usage
 
 ```typst
-#import "@preview/guide-lines:v0.1.0": background
+#import "@preview/showframe:v0.1.0": background
 #set page(paper: "a6")
 
 #set page(background: background())
