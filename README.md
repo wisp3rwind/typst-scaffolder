@@ -34,6 +34,18 @@ The following limitations are known, PRs to address them are always welcome!:
   binding on the left side. It would be correct to follow Typst and determine
   the binding according to the text direction.
 
+## Feature ideas
+
+The following are some ideas of functionality that might be added or improved
+in this package:
+
+- Further separate measuring and rendering steps in the implementation.
+  This would allow to make the rendering more customizable
+  e.g. like the cross markers in this related
+  [`tex.SE` question](https://tex.stackexchange.com/questions/2792/display-text-area-markers),
+  or by not having contiguous lines but just rectangles around the main and
+  margin text areas.
+
 ## Acknowledgements
 The following Typst issues and forum post inspired this package and informed
 its design and implementation:
