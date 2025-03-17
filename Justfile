@@ -7,13 +7,13 @@ export TYPST_ROOT := root
 default:
 	@just --list --unsorted
 
-# run reference tests
+# run tytanic reference tests
 test *args:
-	typst-test run {{ args }}
+	tt run {{ args }}
 
-# update reference tests
+# update tytanic reference tests
 update *args:
-	typst-test update {{ args }}
+	tt update {{ args }}
 
 # compile examples for README to svg
 examples:
