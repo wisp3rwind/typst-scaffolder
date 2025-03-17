@@ -3,7 +3,7 @@
 Show borders around the main text area, header and footer in Typst documents.
 
 This may be useful to understand and debug layout issues.
-The idea is similar to the LaTeX  [`layout`](https://ctan.org/pkg/layout)
+The idea is similar to the LaTeX  [`showframe`](https://ctan.org/pkg/showframe)
 package.
 
 ## Usage
@@ -37,3 +37,9 @@ The following Typst issues and forum post inspired this package and informed
 its design and implementation:
 
 - https://github.com/typst/typst/issues/5311
+
+## LaTeX equivalents
+- the [`layout`](https://ctan.org/pkg/layout) package shows the page dimensions
+- the [`showframe`](https://ctan.org/pkg/showframe) package
+- the [`geometry`](https://ctan.org/pkg/geometry) package used as `\usepackge[showframe,pass]{geometry}`
+- a related [`tex.SE` question](https://tex.stackexchange.com/questions/2792/display-text-area-markers)
