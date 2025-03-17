@@ -1,3 +1,5 @@
+[![Tests](https://github.com/wisp3rwind/typst-showframe/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/wisp3rwind/typst-showframe/actions/workflows/tests.yml)
+
 # The `showframe` Package
 
 Show borders around the main text area, header and footer in Typst documents.
