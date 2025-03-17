@@ -9,11 +9,11 @@ jobs:
   tests:
     strategy:
       matrix:
-        typst-version: ["0.12"]
+        typst-version: ["0.13"]
         # the docs don't need to build with all versions supported by the package;
         # the latest one is enough
         # include:
-        #   - typst-version: "0.12"
+        #   - typst-version: "0.13"
         #     doc: 1
     runs-on: ubuntu-latest
     steps:
