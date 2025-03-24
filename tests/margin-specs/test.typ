@@ -1,11 +1,12 @@
+#import "/tests/helper.typ": test-rect
 #import "/src/impl.typ": get-page-binding, get-page-margins, get-text-dir
 #import "/src/lib.typ": background
 
 #set page(
   background: background(),
   // Fill header, footer, ...
-  footer: rect(width: 100%, height: 100%, fill: red.lighten(80%), stroke: none),
-  header: rect(width: 100%, height: 100%, fill: green.lighten(80%), stroke: none),
+  footer: test-rect(fill: red),
+  header: test-rect(fill: green),
   paper: "a6",
 )
 
@@ -19,30 +20,19 @@
   set page(binding: binding, margin: margin)
   
   for _ in range(2) {
+    let body = [
+      Setup
+      - margin: #margin (Parsed: #context {  get-page-margins() })
+      - binding: #binding (Parsed: #context {  get-page-binding() })
+      - dir: #dir (Parsed: #context { get-text-dir() })
+      - lang: #lang (Parsed: #context { text.lang })
+      - odd page: #context { calc.odd(here().page()) }
+    ]
+
     // ... and main text area with colored rectangles that fill the whole area.
     // If the package is correctly implemented, the frame shown should exactly
     // correspond to the rectangle locations.
-    rect(
-      height: 100%,
-      width: 100%,
-      fill: blue.lighten(80%),
-      stroke: none,
-      {
-        v(1fr)
-
-        [
-          Setup
-          - margin: #margin (Parsed: #context {  get-page-margins() })
-          - binding: #binding (Parsed: #context {  get-page-binding() })
-          - dir: #dir (Parsed: #context { get-text-dir() })
-          - lang: #lang (Parsed: #context { text.lang })
-          - odd page: #context { calc.odd(here().page()) }
-        ]
-
-        v(1fr)
-
-      }
-    )
+    test-rect(fill: blue, body)
 
     pagebreak(weak: true)
   }
