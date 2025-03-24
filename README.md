@@ -11,7 +11,7 @@ package.
 ## Usage
 
 ```typst
-#import "@preview/show-the-frame:v0.1.0": background
+#import "@preview/show-the-frame:v0.1.1": background
 #set page(paper: "a6")
 
 #set page(background: background())
