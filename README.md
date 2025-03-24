@@ -29,10 +29,7 @@ package.
 
 The following limitations are known, PRs to address them are always welcome!:
 
-- If `page.margin` contains the `inside` or `outside` keys, and `page.binding`
-  is set to `auto`, the package will currently assume an LTR document with
-  binding on the left side. It would be correct to follow Typst and determine
-  the binding according to the text direction.
+- (none)
 
 ## Feature ideas
 

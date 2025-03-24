@@ -12,15 +12,42 @@
   stroke: stroke
 )
 
+// rtl languages taken from the Typst compiler code as of 2025-03-24
+#let rtl-languages = ("ar", "dv", "fa", "he", "ks", "pa", "ps", "sd", "ug", "ur", "yi")
+
+// Resolve text.dir specification into the concrete ltr/rtl value.
+//
+// Requires context.
+#let get-text-dir() = {
+  if text.dir == ltr {
+    ltr
+  } else if text.dir == rtl {
+    rtl
+  } else if text.dir == auto {
+    if rtl-languages.contains(text.lang) {
+      rtl
+    } else {
+      ltr
+    }
+  } else {
+    panic("Invalid value for text.dir: ", text.dir)
+  }
+}
+
 // Resolve page.binding specification into the concrete left/right value.
-#let get-binding() = {
+//
+// Requires context.
+#let get-page-binding() = {
   if page.binding == left {
     left 
   } else if page.binding == right {
     right
   } else if page.binding == auto {
-    // FIXME: parse text direction
-    left
+    if get-text-dir() == ltr {
+      left
+    } else {
+      right
+    }
   } else {
     panic("Invalid value for page.binding: ", page.binding)
   }
@@ -33,7 +60,9 @@
 // values.
 // If the "inside" or "outside" keys are given, this requires parsing
 // page.binding, which is not fully implemented yet (see above).
-#let get-margins() = {
+//
+// Requires context.
+#let get-page-margins() = {
   // This computes Typst's default margin on all sides, which is used for each
   // side which is not explicitly specified through any of the keys in
   // page.margin.
@@ -43,7 +72,7 @@
   )
   let default-margin = 2.5 / 21 * min-dim
 
-  let binding = get-binding()
+  let binding = get-page-binding()
 
   // Initialize all margins to `auto`, then go through page.margin in the order
   // of precedence specified in Typst's docs and update them.
@@ -66,13 +95,13 @@
     }
     if "inside" in page.margin {
       if binding == left {
-        if calc.odd(here.page()) {
+        if calc.odd(here().page()) {
           margins.left = page.margin.inside
         } else {
           margins.right = page.margin.inside
         }
       } else {
-        if calc.odd(here.page()) {
+        if calc.odd(here().page()) {
           margins.right = page.margin.inside
         } else {
           margins.left = page.margin.inside
@@ -81,13 +110,13 @@
     }
     if "outside" in page.margin {
       if binding == left {
-        if calc.odd(here.page()) {
+        if calc.odd(here().page()) {
           margins.right = page.margin.outside
         } else {
           margins.left = page.margin.outside
         }
       } else {
-        if calc.odd(here.page()) {
+        if calc.odd(here().page()) {
           margins.left = page.margin.outside
         } else {
           margins.right = page.margin.outside
@@ -135,7 +164,7 @@
 #let background(
   stroke: __default-stroke,
 ) = context {
-  let margins = get-margins()
+  let margins = get-page-margins()
 
   let hl = hline(stroke)
   let vl = vline(stroke)
