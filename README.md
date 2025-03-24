@@ -15,11 +15,16 @@ package.
 #set page(paper: "a6")
 
 #set page(background: background())
+
 #lorem(100)
 
 #pagebreak()
 
-#set page(background: background(stroke: blue + 1pt))
+#set page(
+  background: background(stroke: blue + 1pt),
+  columns: 2,
+)
+
 #lorem(100)
 ```
 
