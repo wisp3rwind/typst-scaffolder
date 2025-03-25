@@ -1,4 +1,4 @@
-#import "/tests/helper.typ": test-rect, test-page
+#import "/tests/helper.typ": test-rect
 #import "/src/lib.typ": background
 
 #set page(
