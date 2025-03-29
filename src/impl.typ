@@ -30,7 +30,7 @@
       ltr
     }
   } else {
-    panic("Invalid value for text.dir: ", text.dir)
+    panic("Unexpected value for text.dir: ", text.dir)
   }
 }
 
@@ -49,7 +49,7 @@
       right
     }
   } else {
-    panic("Invalid value for page.binding: ", page.binding)
+    panic("Unexpected value for page.binding: ", page.binding)
   }
 }
 
@@ -59,7 +59,7 @@
 // in the same way as typst does to get the actual left/right/top/bottom
 // values.
 // If the "inside" or "outside" keys are given, this requires parsing
-// page.binding, which is not fully implemented yet (see above).
+// page.binding.
 //
 // Requires context.
 #let get-page-margins() = {
@@ -72,12 +72,16 @@
   )
   let default-margin = 2.5 / 21 * min-dim
 
-  let binding = get-page-binding()
-
   // Initialize all margins to `auto`, then go through page.margin in the order
   // of precedence specified in Typst's docs and update them.
   let margins = (top: auto, bottom: auto, left: auto, right: auto)
   if type(page.margin) == dictionary {
+    let binding = if "inside" in page.margin or "outside" in page.margin {
+      get-page-binding()
+    } else {
+      left   // dummy value, it is not required below
+    }
+
     if "rest" in page.margin {
       let value = page.margin.rest
       margins.top = value
