@@ -32,7 +32,7 @@ jobs:
           crate: just
 
       - name: Setup typst
-        uses: typst-community/setup-typst@v3
+        uses: typst-community/setup-typst@v4
         with:
           typst-version: latest
 
