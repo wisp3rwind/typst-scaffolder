@@ -17,7 +17,7 @@
 ) = {
   set text(lang: lang, dir: dir)
   set page(binding: binding, margin: margin, columns: columns)
-  
+
   for _ in range(columns) {
     // ... and main text area with colored rectangles that fill the whole area.
     // If the package is correctly implemented, the frame shown should exactly

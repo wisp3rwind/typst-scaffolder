@@ -39,7 +39,7 @@
 // Requires context.
 #let get-page-binding() = {
   if page.binding == left {
-    left 
+    left
   } else if page.binding == right {
     right
   } else if page.binding == auto {

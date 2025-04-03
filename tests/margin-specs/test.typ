@@ -18,7 +18,7 @@
 ) = {
   set text(lang: lang, dir: dir)
   set page(binding: binding, margin: margin)
-  
+
   for _ in range(2) {
     let body = [
       Setup
