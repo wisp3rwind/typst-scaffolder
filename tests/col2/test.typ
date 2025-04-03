@@ -1,8 +1,8 @@
 #import "/tests/helper.typ": test-rect
-#import "/src/lib.typ": background
+#import "/src/lib.typ": scaffolding
 
 #set page(
-  background: background(),
+  background: scaffolding(),
   footer: test-rect(fill: red),
   header: test-rect(fill: green),
   paper: "a6",

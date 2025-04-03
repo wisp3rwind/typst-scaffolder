@@ -165,7 +165,7 @@
 )
 
 // Display lines around the main text area, header and footer.
-#let background(
+#let scaffolding(
   stroke: __default-stroke,
 ) = context {
   let margins = get-page-margins()
