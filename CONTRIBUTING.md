@@ -5,7 +5,7 @@
 - Create a PR against the typst packages repository
 - prepend a new section to the changelog and commit it:
   ```
-  # [unreleased](https://github.com/wisp3rwind/typst-show-the-frame/releases/tag/<tag>)
+  # [unreleased](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/<tag>)
 
   ## Added
 

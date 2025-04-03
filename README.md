@@ -1,6 +1,6 @@
-[![Tests](https://github.com/wisp3rwind/typst-show-the-frame/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/wisp3rwind/typst-show-the-frame/actions/workflows/tests.yml)
+[![Tests](https://github.com/wisp3rwind/typst-scaffolder/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/wisp3rwind/typst-scaffolder/actions/workflows/tests.yml)
 
-# The `show-the-frame` Package
+# The `scaffolder` Package
 
 Show borders around the main text area, header and footer in Typst documents.
 
@@ -11,17 +11,17 @@ package.
 ## Usage
 
 ```typst
-#import "@preview/show-the-frame:v0.1.1": background
+#import "@preview/scaffolder:v0.2.0": scaffolding
 #set page(paper: "a6")
 
-#set page(background: background())
+#set page(background: scaffolding())
 
 #lorem(100)
 
 #pagebreak()
 
 #set page(
-  background: background(stroke: blue + 1pt),
+  background: scaffolding(stroke: blue + 1pt),
   columns: 2,
 )
 

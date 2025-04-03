@@ -1,9 +1,9 @@
 #import "/tests/helper.typ": test-rect
 #import "/src/impl.typ": get-page-binding, get-page-margins, get-text-dir
-#import "/src/lib.typ": background
+#import "/src/lib.typ": scaffolding
 
 #set page(
-  background: background(),
+  background: scaffolding(),
   // Fill header, footer, ...
   footer: test-rect(fill: red),
   header: test-rect(fill: green),
