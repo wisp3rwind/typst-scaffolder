@@ -1,5 +1,5 @@
 # Release checklist
-
+- Update version in `typst.toml` and `README.md`
 - Check & finalize changelog, commit
 - create a new tag and push it, this triggers the release workflow
 - Create a PR against the typst packages repository
@@ -13,7 +13,7 @@
 
   ## Changed
 
-  ## Migration Guide from v0.1.x
+  ## Migration Guide from vX.Y.Z
   ```
 
 # Testing
