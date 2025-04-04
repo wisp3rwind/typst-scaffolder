@@ -19,8 +19,11 @@ keywords = [
 ]
 exclude = [
   ".github",
+  ".gitignore",
   "docs",
   "scripts",
   "tests",
   "Justfile",
+  "CHANGELOG.md",
+  "CONTRIBUTING.md",
 ]
