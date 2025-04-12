@@ -1,14 +1,14 @@
 // A vertical line spanning the height of the page
-#let vline(stroke) = line(
+#let vline(stroke, page-height) = line(
   start: (0pt, 0pt),
-  end: (0pt, page.height),
+  end: (0pt, page-height),
   stroke: stroke
 )
 
 // A horizontal line spanning the width of the page
-#let hline(stroke) = line(
+#let hline(stroke, page-width) = line(
   start: (0pt, 0pt),
-  end: (page.width, 0pt),
+  end: (page-width, 0pt),
   stroke: stroke
 )
 
@@ -170,14 +170,19 @@
 ) = context {
   let margins = get-page-margins()
 
-  let hl = hline(stroke)
-  let vl = vline(stroke)
+  // Rotate page clockwise for landscape mode
+  // cf. https://github.com/typst/typst/issues/4158
+  let page-height = if page.flipped { page.width } else { page.height }
+  let page-width = if page.flipped { page.height } else { page.width }
+
+  let hl = hline(stroke, page-width)
+  let vl = vline(stroke, page-height)
 
   // Main text area
   place(top + left, dx: margins.left, vl)
-  place(top + left, dx: page.width - margins.right, vl)
+  place(top + left, dx: page-width - margins.right, vl)
   place(top + left, dy: margins.top, hl)
-  place(top + left, dy: page.height - margins.bottom, hl)
+  place(top + left, dy: page-height - margins.bottom, hl)
 
   // Header
   let ascent = page.header-ascent.ratio * margins.top - page.header-ascent.length
@@ -185,12 +190,12 @@
 
   // Footer
   let descent = page.footer-descent.ratio * margins.bottom + page.footer-descent.length
-  place(top + left, dy: page.height - margins.bottom + descent, hl)
+  place(top + left, dy: page-height - margins.bottom + descent, hl)
 
   // If the page more than a single column, show additional lines highlighting
   // the column gutter.
   if page.columns > 1 {
-    let textwidth = page.width - margins.left - margins.right
+    let textwidth = page-width - margins.left - margins.right
     let gutter = columns.gutter.length + columns.gutter.ratio * textwidth
     let col-width = (textwidth - (page.columns - 1) * gutter) / page.columns
     let dx = margins.left
