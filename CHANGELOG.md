@@ -1,6 +1,7 @@
 # [unreleased](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/<tag>)
 
 ## Added
+- Support for `page.flipped` (landscape orientation)
 
 ## Removed
 
