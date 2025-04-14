@@ -1,13 +1,10 @@
-# [unreleased](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/<tag>)
+# [v0.2.1](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/v0.2.1)
 
 ## Added
 - Support for `page.flipped` (landscape orientation)
 
-## Removed
-
 ## Changed
-
-## Migration Guide from v0.2.x
+- Fixed the example in `README.md` which had a typo in the `#import` statement
 
 
 # [v0.2.0](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/v0.2.0)

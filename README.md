@@ -11,7 +11,7 @@ package.
 ## Usage
 
 ```typst
-#import "@preview/scaffolder:0.2.0": scaffolding
+#import "@preview/scaffolder:0.2.1": scaffolding
 #set page(paper: "a6")
 
 #set page(background: scaffolding())
