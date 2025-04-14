@@ -31,3 +31,14 @@ When making changes that intentionally change the output, run
 just update
 ```
 to update the reference files.
+
+To add a new test, either use `tytanic` via
+```
+tt add "my-test"
+```
+(see
+[the documentation](https://tingerrr.github.io/tytanic/reference/tests/unit.html)
+regarding the various kinds of tests that are supported).
+If you have already created a `.typ` file for your test, and want to turn it
+into a ref-test, simply create a directory called `ref` next to it before
+running `just update`.
