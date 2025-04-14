@@ -15,9 +15,11 @@
   binding: auto,
   dir: auto,
   lang: "en",
+  flipped: false,
+
 ) = {
   set text(lang: lang, dir: dir)
-  set page(binding: binding, margin: margin)
+  set page(binding: binding, margin: margin, flipped: flipped)
 
   for _ in range(2) {
     let body = [
@@ -27,6 +29,12 @@
       - dir: #dir (Parsed: #context { get-text-dir() })
       - lang: #lang (Parsed: #context { text.lang })
       - odd page: #context { calc.odd(here().page()) }
+      #if flipped [
+        // Only show this line when `flipped` is `true` such that old tests
+        // outputs that were generated before adding landscape support don't
+        // change.
+        - flipped: #context { page.flipped }
+      ]
     ]
 
     // ... and main text area with colored rectangles that fill the whole area.
@@ -38,14 +46,17 @@
   }
 }
 
-#test-page()
-#test-page(margin: 1cm)
-#test-page(margin: (inside: 5mm, outside: 3cm))
-#test-page(margin: (inside: 5mm, outside: 3cm), binding: left)
-#test-page(margin: (inside: 5mm, outside: 3cm), binding: right)
-#test-page(margin: (inside: 5mm, outside: 3cm), dir: ltr)
-#test-page(margin: (inside: 5mm, outside: 3cm), dir: rtl)
-#test-page(margin: (inside: 5mm, outside: 3cm), lang: "de")
-#test-page(margin: (inside: 5mm, outside: 3cm), lang: "ar")
-#test-page(margin: (top: 5mm, bottom: 3cm), lang: "ar")
-#test-page(margin: (left: 1cm, right: 3cm))
+#for flipped in (false, true) {
+  test-page(flipped: flipped)
+  test-page(margin: 1cm, flipped: flipped)
+  test-page(margin: (inside: 5mm, outside: 3cm), flipped: flipped)
+  test-page(margin: (inside: 5mm, outside: 3cm), binding: left, flipped: flipped)
+  test-page(margin: (inside: 5mm, outside: 3cm), binding: right, flipped: flipped)
+  test-page(margin: (inside: 5mm, outside: 3cm), dir: ltr, flipped: flipped)
+  test-page(margin: (inside: 5mm, outside: 3cm), dir: rtl, flipped: flipped)
+  test-page(margin: (inside: 5mm, outside: 3cm), lang: "de", flipped: flipped)
+  test-page(margin: (inside: 5mm, outside: 3cm), lang: "ar", flipped: flipped)
+  test-page(margin: (top: 5mm, bottom: 3cm), lang: "ar", flipped: flipped)
+  test-page(margin: (left: 1cm, right: 3cm), flipped: flipped)
+}
+
