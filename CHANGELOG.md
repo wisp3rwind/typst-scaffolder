@@ -1,3 +1,14 @@
+# [unreleased](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/<tag>)
+
+## Added
+
+## Removed
+
+## Changed
+
+## Migration Guide from v0.2.x
+
+
 # [v0.2.1](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/v0.2.1)
 
 ## Added
