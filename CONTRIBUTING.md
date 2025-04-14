@@ -3,7 +3,8 @@
 - Check & finalize changelog, commit
 - create a new tag and push it, this triggers the release workflow
 - Create a PR against the typst packages repository
-- prepend a new section to the changelog and commit it:
+- in `typst.toml`, bump version to `vX.Y.{Z+1}-dev` and prepend a new section
+  to the changelog:
   ```
   # [unreleased](https://github.com/wisp3rwind/typst-scaffolder/releases/tag/<tag>)
 
@@ -15,6 +16,7 @@
 
   ## Migration Guide from vX.Y.Z
   ```
+  then commit both
 
 # Testing
 This project uses [`tytanic`](https://tingerrr.github.io/tytanic/index.html) to
