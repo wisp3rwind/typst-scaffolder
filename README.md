@@ -54,6 +54,9 @@ its design and implementation:
 
 - https://github.com/typst/typst/issues/5311
 
+A more general _visual debug mode_ for Typst has also
+been proposed in [typst/#5226](https://github.com/typst/typst/issues/5226).
+
 ## LaTeX equivalents
 - the [`layout`](https://ctan.org/pkg/layout) package shows the page dimensions
 - the [`showframe`](https://ctan.org/pkg/showframe) package
