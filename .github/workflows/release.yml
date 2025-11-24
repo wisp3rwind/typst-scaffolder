@@ -18,7 +18,7 @@ jobs:
     environment: release  # grants access to the REGISTRY_TOKEN
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Probe runner package cache
         uses: awalsh128/cache-apt-pkgs-action@v1
@@ -52,7 +52,7 @@ jobs:
           just install out
 
       - name: Checkout package registry
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{ env.REGISTRY_REPO }}
           token: ${{ secrets.REGISTRY_TOKEN }}
