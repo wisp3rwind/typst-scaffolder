@@ -16,6 +16,8 @@ keywords = [
   "margin",
   "header",
   "footer",
+  "page",
+  "margins",
 ]
 exclude = [
   ".github",
