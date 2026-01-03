@@ -26,10 +26,9 @@ jobs:
           packages: cargo
           version: 1.0
 
-      - name: Install just from crates.io
-        uses: baptiste0928/cargo-install@v3
+      - uses: taiki-e/install-action@v2
         with:
-          crate: just
+          tool: just
 
       - name: Setup typst
         uses: typst-community/setup-typst@v4
