@@ -8,7 +8,14 @@ This may be useful to understand and debug layout issues.
 The idea is similar to the LaTeX  [`showframe`](https://ctan.org/pkg/showframe)
 package.
 
+Additionally, some internal functions for resolving page and margin dimensions
+are exposed since they might be useful beyond this package.
+
 ## Usage
+
+The main entry point is the `scaffolding` method, which renders a grid to
+indicate text area, header and footer. It should be placed in the page's
+background:
 
 ```typst
 #import "@preview/scaffolder:0.2.1": scaffolding
@@ -29,6 +36,29 @@ package.
 ```
 
 ![Output of the usage example, page 1](/docs/example-1-p1.svg) ![Output of the usage example, page 2](/docs/example-1-p2.svg)
+
+
+The following methods resolve the actual values of some parameters
+related to layout:
+
+- `get-text-dir`: Resolves `text.dir` to either `ltr` or `rtl`.
+- `get-page-binding`: Resolves `page.binding` to either `left` or `right`.
+- `get-page-margins`: Resolves `page.margin` to a dictionary with keys `left`, `right`, `top` and `bottom`.
+
+All of the require context:
+
+```typst
+#import "@preview/scaffolder:0.2.1": get-text-dir, get-page-binding, get-page-margins
+
+#context {
+  let dir = get-text-dir()
+
+  let binding = get-page-binding()
+
+  let margins = get-page-margins()
+}
+
+```
 
 ## Known issues
 
