@@ -27,3 +27,7 @@ exclude = [
   "CHANGELOG.md",
   "CONTRIBUTING.md",
 ]
+
+[tool.tytanic]
+# Account for some font rendering changes from Typst 0.12 -> 0.13 without updating the reference images
+default.max-delta = 2
