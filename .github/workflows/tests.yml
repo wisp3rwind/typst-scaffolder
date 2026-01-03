@@ -6,64 +6,58 @@ on:
     branches: [ main ]
 
 jobs:
-  tests:
+  build-examples:
     strategy:
       matrix:
-        typst-version: ["0.12", "0.13", "latest"]
-        # the docs don't need to build with all versions supported by the package;
-        # the latest one is enough
-        # include:
-        #   - typst-version: "0.13"
-        #     doc: 1
+        typst-version: ["0.12", "0.13", "0.14", "latest"]
+      fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Probe runner package cache
-        uses: awalsh128/cache-apt-pkgs-action@v1
+      - uses: taiki-e/install-action@v2
         with:
-          packages: imagemagick cargo
-          version: 1.0
-
-      - name: Install oxipng from crates.io
-        uses: baptiste0928/cargo-install@v3
-        with:
-          crate: oxipng
-
-      - name: Install just from crates.io
-        uses: baptiste0928/cargo-install@v3
-        with:
-          crate: just
-
-      - name: Install tytanic from crates.io
-        uses: baptiste0928/cargo-install@v3
-        with:
-          crate: tytanic
+          tool: just
 
       - name: Setup typst
-        id: setup-typst
         uses: typst-community/setup-typst@v4
         with:
           typst-version: ${{ matrix.typst-version }}
           allow-prereleases: true
 
+      - name: Build examples
+        run: just examples
+
+  reftests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # tytanic is based on the following Typst versions
+        # - 0.1.z -> 0.12
+        # - 0.2.z -> 0.13
+        # - 0.3.z -> 0.14
+        # cf. https://typst-community.github.io/tytanic/reference/compat.html
+        tytanic-version: ["0.1", "0.2", "0.3"]
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: tytanic@${{ matrix.tytanic-version }}
+
       - name: Run test suite
-        run: just test
+        run: tt run
 
       - name: Archive diffs
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          # "latest" and an explicitly specified version might be the same, so
-          # be sure not to create filename conflicts here
-          name: typst-${{ matrix.typst-version }}-${{ steps.setup-typst.outputs.typst-version }}-diffs
+          name: typst-${{ matrix.tytanic-version }}-diffs
           path: |
             tests/**/diff/*.png
             tests/**/out/*.png
             tests/**/ref/*.png
-          retention-days: 5
-
-      - name: Build docs
-        if: ${{ matrix.doc }}
-        run: just doc
+          retention-days: 14
