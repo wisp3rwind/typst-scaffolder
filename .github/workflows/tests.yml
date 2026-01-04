@@ -61,3 +61,18 @@ jobs:
             tests/**/out/*.png
             tests/**/ref/*.png
           retention-days: 14
+
+  package-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - uses: taiki-e/cache-cargo-install-action@v3
+        with:
+          tool: typst-package-check
+          git: https://github.com/typst/package-check
+          tag: v0.4.3
+
+      - name: Run package check
+        run: typst-package-check check
