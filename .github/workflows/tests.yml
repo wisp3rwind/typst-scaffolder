@@ -21,7 +21,7 @@ jobs:
           tool: just
 
       - name: Setup typst
-        uses: typst-community/setup-typst@v4
+        uses: typst-community/setup-typst@v5
         with:
           typst-version: ${{ matrix.typst-version }}
           allow-prereleases: true
