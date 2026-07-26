@@ -172,8 +172,20 @@
 
   // Rotate page clockwise for landscape mode
   // cf. https://github.com/typst/typst/issues/4158
-  let page-height = if page.flipped { page.width } else { page.height }
-  let page-width = if page.flipped { page.height } else { page.width }
+  let page-height = if page.flipped {
+    page.width
+  } else if page.height == auto {
+    100%
+  } else {
+    page.height
+  }
+  let page-width = if page.flipped {
+    page.height
+  } else if page.width == auto {
+    100%
+  } else {
+    page.width
+  }
 
   let hl = hline(stroke, page-width)
   let vl = vline(stroke, page-height)
