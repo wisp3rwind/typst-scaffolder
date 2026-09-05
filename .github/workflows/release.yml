@@ -26,7 +26,7 @@ jobs:
           packages: cargo
           version: 1.0
 
-      - uses: taiki-e/install-action@decb84fb327e5b809630c914eb4d1ca67cf59966 # v2.85.14
+      - uses: taiki-e/install-action@ba47c86ac325773530516bb756137ac718732518 # v2.86.5
         with:
           tool: just
 
