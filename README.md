@@ -1,4 +1,6 @@
+[![Typst Universe](https://img.shields.io/badge/Typst_Universe-scaffolder-239dad?logo=typst&logoColor=white)](https://typst.app/universe/package/scaffolder)
 [![Tests](https://github.com/wisp3rwind/typst-scaffolder/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/wisp3rwind/typst-scaffolder/actions/workflows/tests.yml)
+[![Latest tag](https://img.shields.io/github/v/tag/wisp3rwind/typst-scaffolder?color=orange)](https://github.com/wisp3rwind/typst-scaffolder/tags)
 
 # The `scaffolder` Package
 
