@@ -76,3 +76,18 @@ jobs:
 
       - name: Run package check
         run: typst-package-check check
+
+  # For use as status check in branch protection rulesets
+  ci-passed:
+    runs-on: ubuntu-latest
+    needs:
+      - build-examples
+      - reftests
+      - package-check
+    if: always()
+    steps:
+      - name: Verify all tests green
+        run: |
+          test '${{ needs.build-examples.result }}' = 'success'
+          test '${{ needs.reftests.result }}' = 'success'
+          test '${{ needs.package-check.result }}' = 'success'
