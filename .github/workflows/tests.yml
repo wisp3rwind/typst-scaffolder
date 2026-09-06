@@ -11,7 +11,7 @@ jobs:
   build-examples:
     strategy:
       matrix:
-        typst-version: ["0.12", "0.13", "0.14", "latest"]
+        typst-version: ["0.13", "0.14", "0.15", "latest"]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
@@ -39,8 +39,9 @@ jobs:
         # - 0.1.z -> 0.12
         # - 0.2.z -> 0.13
         # - 0.3.z -> 0.14
+        # - 0.4.z -> 0.15
         # cf. https://typst-community.github.io/tytanic/reference/compat.html
-        tytanic-version: ["0.1", "0.2", "0.3"]
+        tytanic-version: ["0.2", "0.3", "0.4"]
       fail-fast: false
     steps:
       - name: Checkout
