@@ -23,7 +23,7 @@ jobs:
           tool: just
 
       - name: Setup typst
-        uses: typst-community/setup-typst@63ac138db421d586de61f7f5ac3bcef6a2e6c78c # v5.1.0
+        uses: typst-community/setup-typst@fee4b65b091cc546f02ce3be15fad8760f38a108 # v5.3.0
         with:
           typst-version: ${{ matrix.typst-version }}
           allow-prereleases: true
